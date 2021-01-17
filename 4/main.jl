@@ -1,16 +1,16 @@
-is_palindrome(s) = (s == reverse(s))
-
 function largest_palindrome_product(d::Int)
-    max = 0
-    for x = round(Int, 10^d - 1):-1:round(Int, 10^(d-1))
-        for y = round(Int, 10^d - 1):-1:round(Int, 10^(d-1))
-            n = x * y
-            if is_palindrome(string(n)) && n > max
-                max = n
+    d⁺, d⁻ = 10^d, 10^(d-1)
+    for prefix = (d⁺-1):-1:d⁻
+        n = prefix * d⁺ + parse(Int, reverse(string(prefix)))
+        for x in (d⁺-1):-1:ceil(Int, √n)
+            if n % x == 0
+                return n
             end
         end
     end
-    return max
+    if d == 1
+        return 9
+    end
 end
 
 println(largest_palindrome_product(3))
