@@ -1,4 +1,4 @@
-function prime_factorization(n::Int)
+function prime_factorization(n)
     result = []
     for p in [2, 3]
         while n % p == 0
@@ -6,7 +6,8 @@ function prime_factorization(n::Int)
             n ÷= p
         end
     end
-    for p = 6:6:ceil(Int, √n)
+    p = 6
+    while p < √n
         while n % (p-1) == 0
             push!(result, (p-1))
             n ÷= (p-1)
@@ -15,6 +16,7 @@ function prime_factorization(n::Int)
             push!(result, (p+1))
             n ÷= (p+1)
         end
+        p += 6
     end
     if n != 1
         push!(result, n)
@@ -23,3 +25,4 @@ function prime_factorization(n::Int)
 end
 
 println(pop!(prime_factorization(600851475143)))
+println(prime_factorization(10000000000011000000000001))
