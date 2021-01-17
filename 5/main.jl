@@ -1,6 +1,6 @@
 function gcd(x::Int, y::Int)
     if x > y
-        return (x % y == 0) ? y : gcd(x % y, y)
+        return (x % y == 0) ? y : gcd(y, x % y)
     elseif x < y
         return (y % x == 0) ? x : gcd(y % x, x)
     else
