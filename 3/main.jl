@@ -6,6 +6,7 @@ function prime_factorization(n)
             n ÷= p
         end
     end
+
     p = 6
     while p < √n
         while n % (p-1) == 0
@@ -18,11 +19,12 @@ function prime_factorization(n)
         end
         p += 6
     end
+
     if n != 1
         push!(result, n)
     end
+
     return result
 end
 
 println(pop!(prime_factorization(600851475143)))
-println(prime_factorization(10000000000011000000000001))
