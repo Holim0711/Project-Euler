@@ -16,4 +16,7 @@ palindrome ![equation](https://latex.codecogs.com/gif.latex?n)을 큰 수부터 
 
 - d≤20인 경우에 성립함을 확인
 - 정답은 길이 2d의 palindrome이다.
-- 정답은 `floor(d/2) - 1`개의 9로 시작하는 palindrome이다.
+- 정답은 11의 배수이다.
+- 정답은 `floor(d/2) - 1`개의 9로 시작하고 끝나는 palindrome이다.
+- 곱해지는 두 수는 끝자리가 5가 아닌 홀수이다.
+
