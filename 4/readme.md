@@ -12,7 +12,8 @@ palindrome ![equation](https://latex.codecogs.com/gif.latex?n)을 큰 수부터 
 
 ## Assumption
 
-정답은 floor(d/2)개의 9로 시작하는 두 수의 곱이다.
+정답은 `floor(d/2)`개의 9로 시작하는 두 수의 곱이다.
 
 - d≤20인 경우에 성립함을 확인
 - 정답은 길이 2d의 palindrome이다.
+- 정답은 `floor(d/2) - 1`개의 9로 시작하는 palindrome이다.
