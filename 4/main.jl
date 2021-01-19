@@ -1,28 +1,32 @@
 is_palindrome(s) = (s == reverse(s))
 
-function largest_palindrome_product(d::Int)
-    d⁺ = big(10)^d - 1
-    k = d ÷ 2
-    k⁺ = (big(10)^k - 1) * big(10)^(d-k) + 1
-    m = big(10)^(k - 1)
+function extended_euclidean(a, b)
+    # find (x, y) such that ax + by = gcd(a, b)
+    if a == 0
+        return 0, 1
+    end
+    x₁, y₁ = extended_euclidean(b % a, a)
+    return (y₁ - (b ÷ a) * x₁), x₁
+end
 
-    xₕ = (d % 2 == 0) ? d⁺ : (d⁺ - 20)
-    Yₕ = [0, d⁺, 0, d⁺-6, 0, 0, 0, d⁺-2, 0, d⁺-8]
+function mod_inverse(x, m)
+    # find 'a' such that ax ≡ 1 (mod m)
+    # this method works only when x & m are coprime.
+    x₁, _ = extended_euclidean(x, m)
+    return (x₁ % m + m) % m
+end
+
+function largest_palindrome_product(d::Int)
+    d⁺ = big(10)^d
+    k⁺ = d⁺ - 10^ceil(Int, d/2) + 1
+    m = 10^(floor(Int, d/2) - 1)
+
+    xₕ = (d % 2 == 0) ? (d⁺ - 1) : (d⁺ - 21)
 
     ṅ = ẋ = ẏ = 0
     for x in xₕ:-22:k⁺
-        yₕ = Yₕ[x % 10 + 1]
-        if yₕ == 0
-            continue
-        end
-        yₘ = 0
-        for y in yₕ:-10:max(k⁺, ceil(BigInt, ṅ / x))
-            if (x * y + 1) % m == 0
-                yₘ = y
-                break
-            end
-        end
-        for y in yₘ:-m:max(k⁺, ceil(BigInt, ṅ / x))
+        yₕ = d⁺ - mod_inverse(x, m)
+        for y in yₕ:-m:max(k⁺, ceil(BigInt, ṅ / x))
             n = x * y
             if is_palindrome(string(n))
                 ṅ, ẋ, ẏ = n, x, y
@@ -33,6 +37,6 @@ function largest_palindrome_product(d::Int)
     return ṅ, ẋ, ẏ
 end
 
-for i = 2:13
+for i = 2:16
     println("$i: ", largest_palindrome_product(i))
 end
