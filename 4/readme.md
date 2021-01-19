@@ -8,8 +8,8 @@ Find the largest palindrome made from the product of two 3-digit numbers.
 
 x를 5의 배수가 아닌 11의 홀수배인 수로 두고, 적절한 y를 찾는다.
 
-1. `x * y ≡ 1 (mod 10)`을 만족하는 y의 최대값 `yₕ`을 찾는다.
-2. `x * y ≡ 1 (mod m = 10^(⌊d/2⌋-1))`을 만족하는 y의 최대값 `yₘ`을 찾는다.
+1. `x * y + 1 ≡ 0 (mod 10)`을 만족하는 y의 최대값 `yₕ`을 찾는다.
+2. `x * y + 1 ≡ 0 (mod m = 10^(⌊d/2⌋-1))`을 만족하는 y의 최대값 `yₘ`을 찾는다.
 3. `yₘ`에서 `m`씩 빼가며 palindrome이 되는 `x * y`를 찾는다.
 
 ## Assumption
