@@ -17,16 +17,15 @@ function mod_inverse(x, m)
 end
 
 function largest_palindrome_product(d::Int)
-    d⁺ = big(10)^d
-    k⁺ = d⁺ - 10^ceil(Int, d/2) + 1
-    m = 10^(floor(Int, d/2) - 1)
-
-    xₕ = (d % 2 == 0) ? (d⁺ - 1) : (d⁺ - 21) % d⁺
-
+    d⁺ = big(10)^d                  # d-digit number upper limit
+    d⁻ = d⁺ - 10^ceil(Int, d/2)     # *assumption* (ẋ, ẏ) > d⁻
+    m = 10^(d ÷ 2 - 1)              # └→ ẋ * ẏ + 1 ≡ 0 (mod m)
+    xₕ = (d % 2 == 0) ? (d⁺ - 1) : (d⁺ - 21)
+ 
     ṅ = ẋ = ẏ = 0
-    for x in xₕ:-22:k⁺
+    for x in xₕ:-22:d⁻
         yₕ = d⁺ - mod_inverse(x, m)
-        for y in yₕ:-m:max(k⁺, ceil(BigInt, ṅ / x))
+        for y in yₕ:-m:max(d⁻, ceil(BigInt, ṅ / x))
             n = x * y
             if is_palindrome(string(n))
                 ṅ, ẋ, ẏ = n, x, y
@@ -37,6 +36,4 @@ function largest_palindrome_product(d::Int)
     return ṅ, ẋ, ẏ
 end
 
-for i = 2:16
-    println("$i: ", largest_palindrome_product(i))
-end
+println(largest_palindrome_product(7))
