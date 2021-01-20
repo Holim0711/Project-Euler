@@ -7,8 +7,7 @@ function prime_factorization(n)
         end
     end
 
-    p = 6
-    while p < √n
+    for p in 6:6:floor(Int, √n)
         while n % (p-1) == 0
             push!(result, (p-1))
             n ÷= (p-1)
@@ -17,7 +16,6 @@ function prime_factorization(n)
             push!(result, (p+1))
             n ÷= (p+1)
         end
-        p += 6
     end
 
     if n != 1
