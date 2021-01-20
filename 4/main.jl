@@ -21,7 +21,7 @@ function largest_palindrome_product(d::Int)
     k⁺ = d⁺ - 10^ceil(Int, d/2) + 1
     m = 10^(floor(Int, d/2) - 1)
 
-    xₕ = (d % 2 == 0) ? (d⁺ - 1) : (d⁺ - 21)
+    xₕ = (d % 2 == 0) ? (d⁺ - 1) : (d⁺ - 21) % d⁺
 
     ṅ = ẋ = ẏ = 0
     for x in xₕ:-22:k⁺
