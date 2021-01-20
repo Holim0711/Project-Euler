@@ -1,20 +1,24 @@
 function sum_of_primes(n)
-    visit = [false for i in 1:n]
-    visit[1] = true
+    sieve = [true for i in 1:n]
+    sieve[1] = false
+    sieve[2:2:n] .= false
+    sieve[3:3:n] .= false
 
-    sum = 0
+    sum = 5
 
-    for i in 1:floor(Int, √n)
-        if !visit[i]
-            for j in 2i:i:n
-                visit[j] = true
-            end
-            sum += i
+    for i in 6:6:floor(Int, √n)
+        if sieve[i-1]
+            sieve[(i-1):i-1:n] .= false
+            sum += i-1
+        end
+        if sieve[i+1]
+            sieve[(i+1):i+1:n] .= false
+            sum += i+1
         end
     end
 
     for i in ceil(Int, √n):n
-        if !visit[i]
+        if sieve[i]
             sum += i
         end
     end
