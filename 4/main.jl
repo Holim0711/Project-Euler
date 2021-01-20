@@ -36,4 +36,4 @@ function largest_palindrome_product(d::Int)
     return ṅ, ẋ, ẏ
 end
 
-println(largest_palindrome_product(7))
+println(largest_palindrome_product(3))
