@@ -7,6 +7,11 @@ function find_primes(n)
     return [i for (i, x) in enumerate(visit) if !x]
 end
 
+function is_prime(primes, n)
+    pos = searchsorted(primes, n)
+    return pos.start == pos.stop
+end
+
 function find(limit)
     primes = find_primes(limit * (2limit + 1))
     max_n , max_a, max_b = 0, 0, 0
@@ -16,7 +21,7 @@ function find(limit)
         end
         for a in (1-b):1000
             n = 0
-            while (n^2 + a*n + b) in primes
+            while is_prime(primes, n^2 + a*n + b)
                 n += 1
             end
             if n > max_n
@@ -24,7 +29,7 @@ function find(limit)
             end
         end
     end
-    return max_n, max_a, max_b
+    return max_a * max_b
 end
 
 println(find(1000))
