@@ -7,7 +7,7 @@ function prime_factorization(n)
         end
     end
 
-    for p in 6:6:floor(Int, √n)
+    for p in 6:6:ceil(Int, √n)
         while n % (p-1) == 0
             push!(result, (p-1))
             n ÷= (p-1)
