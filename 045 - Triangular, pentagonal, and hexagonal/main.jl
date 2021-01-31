@@ -4,15 +4,6 @@
 
 # t(t+1)/2 = p(3p-1)/2 = h(2h-1)
 
-# t² + t = 3p² - p
-# t² + t - (3p² -p) = 0
-# 2t = -1 + √(1 + 4(3p² - p))
-# (12p² - 4p + 1) should be square of odds
-
-# 3p² - p - (t² + t) = 0
-# 6p = 1 + √(12t² + 12t + 1)
-# (12t² + 12t + 1) should be square of (6p - 1)
-
 # t(t+1) = 2h(2h-1)
 # t² + t - (4h² - 2h)
 # 2t = -1 + √(16h² - 8h + 1)
